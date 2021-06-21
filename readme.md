@@ -229,3 +229,5 @@ Http：
   - [x] [SSH原理与运用（一）：远程登录](http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html)
 
 - [x] 了解postman 使用
+
+  > [官网地址](https://www.postman.com/)，[postman软件下载地址](https://www.postman.com/downloads/)，[documentation](https://learning.postman.com/docs/getting-started/introduction/)
