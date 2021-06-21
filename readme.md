@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Linux
 
 可以掌握常用工具的日常使用场景：
@@ -91,12 +90,6 @@ Http：
 
   - [x] add files to the remote repository
 
-=======
-- [ ] git command
-
-  - [x] add files to the remote repository
-
->>>>>>> topic
     > 4 steps when you `git` files to the remote repository:
     >
     > 1. git add filename1, filename2, ....  or git add * (add all)
@@ -221,7 +214,6 @@ Http：
     > $ git rm <file name> or <dic name>
     > $ git commit -m ""
     > $ git push origin <branch name>
-<<<<<<< HEAD
     > ```
 
 - [x] ssh 秘钥登陆原理
@@ -239,6 +231,3 @@ Http：
 - [x] 了解postman 使用
 
   > [官网地址](https://www.postman.com/)，[postman软件下载地址](https://www.postman.com/downloads/)，[documentation](https://learning.postman.com/docs/getting-started/introduction/)
-=======
-    > ```
->>>>>>> topic
