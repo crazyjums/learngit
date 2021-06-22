@@ -4,7 +4,6 @@ def main():
     print("hello world.")
 
 if __name__ == "__main__":
-    # this is in master branch
-    # this is in topic branch
+    # this is version 2.0
     main()
 
