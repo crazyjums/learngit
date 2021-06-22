@@ -1,4 +1,4 @@
-# Linux
+Linux
 
 可以掌握常用工具的日常使用场景：
 
@@ -40,7 +40,7 @@
 
   > [Ansible中文权威指南](https://ansible-tran.readthedocs.io/en/latest/index.html)
 
-Http：
+# Http：
 
 - [ ] 常用header: Host
 
@@ -183,9 +183,18 @@ Http：
     > Automatic merge failed; fix conflicts and then commit the result.
     > ```
     >
-    > **how to fix merge conflict:**
+    > **How to fix merge conflict:**
     >
-    > 
+    > When the merge conflict comes: When two files have two different sets of modifications in the same location, git cannot decide which modification to use and needs to be manually specified.
+    >
+    > The codes bewteen `<<<<<<<HEAD` and `=======` is in the current branch, and the codes bewtten `=======` and `>>>>>>[branch name]` is in the [branch name]. You shoud manually merged the codes.
+    >
+    > After that, you also should `add` the files to repository, use the following command:
+    >
+    > ```bash
+    > $ git add [file name]
+    > $ git commit -m ""  # you can't add the [file name] here, or you will get a error
+    > ```
 
   - [ ] rebase
 
