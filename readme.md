@@ -1,3 +1,5 @@
+
+
 Linux
 
 可以掌握常用工具的日常使用场景：
@@ -42,7 +44,7 @@ Linux
 
 # Http：
 
-- [ ] 常用header: Host
+- [x] 常用header: Host
 
   - [x] 请求：request
 
@@ -168,7 +170,7 @@ Linux
     > 3. git remote add origin "repository address"
     > 4. git push origin branch_name (such as: master)
 
-  - [ ] merge 
+  - [x] merge 
 
     > ```bash
     > $ git merge <branch name>  # when you are in a branch, this command means merge <branch name> to this branch 
@@ -270,7 +272,26 @@ Linux
     > Automatic merge failed; fix conflicts and then commit the result.
     > ```
 
-  - [ ] revert 
+  - [x] revert 
+
+    > [git-revert](https://git-scm.com/docs/git-revert) - Revert some existing commits
+    >
+    > sounds like the `git reset` command, but this command can remain the trackability information, when you wana go back to the history version in `master` branch, you should use `git revert` command instead of `git reset`.
+    >
+    > This command's usage just like the `git reset`.
+    >
+    > ```bash
+    > $ git revert HEAD^  # go back to last version
+    > $ git revert HEAD~[number]  # go back to previous version
+    > # you can see the trackability information at `git revert`:
+    > commit d567e6e3e14165ffa8febd4c62bac2fa413a1509
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 11:33:43 2021 +0800
+    > 
+    >     Revert "add a txt file by jums"
+    > 
+    >     This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
+    > ```
 
   - [x] checkout 
 
@@ -288,9 +309,83 @@ Linux
     > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (new_branch)
     > ```
 
-  - [ ] stash 
+  - [x] stash 
 
-  - [ ] cherry-pick
+    > [git-stash](https://git-scm.com/docs/git-stash) - Stash the changes in a dirty working directory away
+    >
+    > 应用场景：https://www.cnblogs.com/tocy/p/git-stash-reference.html
+    >
+    > - 发现有一个类是多余的，想删掉它又担心以后需要查看它的代码，想保存它但又不想增加一个脏的提交。这时就可以考虑`git stash`。
+    > - 使用git的时候，我们往往使用分支（branch）解决任务切换问题，例如，我们往往会建一个自己的分支去修改和调试代码, 如果别人或者自己发现原有的分支上有个不得不修改的bug，我们往往会把完成一半的代码`commit`提交到本地仓库，然后切换分支去修改bug，改好之后再切换回来。这样的话往往log上会有大量不必要的记录。其实如果我们不想提交完成一半或者不完善的代码，但是却不得不去修改一个紧急Bug，那么使用`git stash`就可以将你当前未提交到本地（和服务器）的代码推入到Git的栈中，这时候你的工作区间和上一次提交的内容是完全一样的，所以你可以放心的修Bug，等到修完Bug，提交到服务器上后，再使用`git stash apply`将以前一半的工作应用回来。
+    > - 经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是`git stash`命令。储藏(stash)可以获取你工作目录的中间状态——也就是你修改过的被追踪的文件和暂存的变更——并将它保存到一个未完结变更的堆栈中，随时可以重新应用。
+    >
+    > ```bash
+    > $ git stash list  # display all stash version
+    > $ git stash pop   # get the top of the stash stack version
+    > $ git stask apply [version number]# when there is a lot of stash versions, you can use this command to specify the version number
+    > $ git stash   # save current working area to the stash version
+    > $ git stash save [a stash name]  # the same as the "git stash", but this version will get a nick name you named it.
+    > $ git stash drop  # delete the top of stash stack's version
+    > $ git stash show [version number]   # use this command to view specific information of the working area
+    > ```
+
+  - [x] cherry-pick
+
+    > [git-cherry-pick](https://git-scm.com/docs/git-cherry-pick) - Apply the changes introduced by some existing commits
+    >
+    > 应用场景：在多分支的分布式开发过程中，在合并代码时分两种情况，一种是将另一个分支中的所有代码都合并带当前分支中来，此时可以使用`git merge <branch name>`命令实现；还有一种情况是只需要将另一个分支中的部分代码合并到当前分支中来，这个时候就需要使用`git cherry-pick <commitHash>`命令来实现了，即将另一个分支的部分`commit`提交到当前的分支中。
+    >
+    > [Git进阶教程-5-5-如何再次应用已经存在的提交的修改](https://www.bilibili.com/video/BV1LK411F7mm?from=search&seid=8010070644096016508)   (videos tutorials)
+    >
+    > [git cherry-pick tutorials](http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)  (more commands informations here)
+    >
+    > ```bash
+    > # at master branch
+    > $ git add 1.txt && git commit -m "add a txt file"
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)
+    > $ git log
+    > commit db298e7bb373711438efdab0e64bbab72b5b5cac (HEAD -> master)
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 10:28:47 2021 +0800
+    > 
+    >     add a txt file
+    > $ git checkout topic
+    > $ git cherry-pick db298e7
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
+    > $ git log
+    > commit ed9bd8a0e76044141efdf26547092eae24e38400 (HEAD -> topic)
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 10:28:47 2021 +0800
+    > 
+    >     add a txt file
+    > ```
+    >
+    > **if use the options [-n], it's no commits in current branch.**
+    >
+    > ```bash
+    > $ git cherry-pick [-n]/[--no-commit] [commit-id]
+    > ```
+    >
+    > **if use the options [-x], you can track the commits**
+    >
+    > ```bash
+    > $ git cherry-pick -x [commit-id]
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
+    > $ git log
+    > commit 6ba043389d5940b743ab39e37419ebc82685b0af (HEAD -> topic)
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 10:41:48 2021 +0800
+    > 
+    >     add 2.txt
+    > 
+    >     (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
+    > ```
+    >
+    > **if use the options [-e] or [--edit], you can edit the file before you commit**
+    >
+    > ```bash
+    > $ git cherry-pick -e [commit-id] # now it will jump to editing interface
+    > ```
 
   - [x] branch
 
