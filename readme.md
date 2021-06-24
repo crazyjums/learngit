@@ -1,10 +1,10 @@
 
 
-Linux
+# Linux
 
 可以掌握常用工具的日常使用场景：
 
-- [ ] awk统计ip，grep ，find ，curl
+- [ ] awk统计ip
 
   - [x] awk基本内置变量：FS、OFS、RS、ORS、NR、NF（输出最后一个字段，`$NF`）、BEGIN、END、FILENAME、ARGC、ARGV
 
@@ -33,10 +33,75 @@ Linux
 
     计算文件中的所有空白行的总数
 
-- [ ] 了解：logrotate，rsync
+- [ ] grep
 
-  - [ ] logrotate
-  - [ ] rsync
+- [ ] find
+
+- [x] curl
+
+  > curl means client URL tool, curl in short.
+  >
+  > [curl tutorials in chinese](http://www.ruanyifeng.com/blog/2019/09/curl-reference.html)
+  >
+  > - **get** request: 
+  >
+  >   ```bash
+  >   curl https://www.baidu.com   # default request is get
+  >   ```
+  >
+  > - `-A`: user can specfiy the user-agent of th request
+  >
+  > - `-b`: send a cookie to server
+  >
+  >   ```bash
+  >   curl -b 'foo=bar;foo2=bar2;...' https://www.baidu.com  # cookie name is foo, value is bar
+  >   curl -b cookie.txt https://www.baidu.com  # send the cookie file to server 
+  >   ```
+  >
+  > - `-c`: write the cookie information that server sent to client into a file
+  >
+  > - `-d`: If you want to use **POST** request to access website, you should send data to server.
+  >
+  >   ```bash
+  >   curl -d 'username=admin&passwd=admin' [X POST] https://www.baidu.com
+  >   curl -d '@data.txt' https://www.baidu.com  # post data is in a file
+  >   ```
+  >
+  > - `--data-urlencode`: same as `-d`, this command can change the data to urlcode.
+
+- [x] 了解：logrotate，rsync
+
+  - [x] logrotate
+
+    > [logrotate](https://linux.die.net/man/8/logrotate) - rotates, compresses, and mails system logs
+    >
+    > [logrotate tutorials in chinese](https://www.jianshu.com/p/81dd446a1cb1)
+
+  - [x] rsync
+
+    > [rsync](https://linux.die.net/man/1/rsync) -- a fast, versatile, remote (and local) file-copying tool
+    >
+    > The `rsync` can replace the command `cp` in linux, for example, you can use `rsync -r source destination` to replace `cp -r source destination `.
+    >
+    > [video tutorials](https://www.bilibili.com/video/BV1qZ4y137En?from=search&seid=10542537430323288651)
+    >
+    > sync local file:
+    >
+    > ```bash
+    > $ rsync -a source destination
+    > ```
+    >
+    > sync remote host file:
+    >
+    > ```bash
+    > $ rsync -av -e 'ssh -p 22' [source] user@remoteHostAddress:[destination] 
+    > ```
+    >
+    >  `-v`   display the details of the information
+    >
+    >  `-a`   archive mode
+    >
+    >  `-e`   log in to remote host
 
 - [ ] 掌握ansible基本用法：主要用于批量查日志，执行命令。
 
@@ -159,7 +224,7 @@ Linux
 
 - [x] markdown语法和 typora 使用
 
-- [ ] git command
+- [x] git command
 
   - [x] add files to the remote repository
 
@@ -198,7 +263,11 @@ Linux
     > $ git commit -m ""  # you can't add the [file name] here, or you will get a error
     > ```
 
-  - [ ] rebase
+  - [x] rebase
+
+    > [git-rebase](https://git-scm.com/docs/git-rebase) - Reapply commits on top of another base tip
+    >
+    > https://www.bilibili.com/video/BV19B4y1u7vm?from=search&seid=7525997366811669539    (video tutroials)
 
   - [x] reset 
 
@@ -231,7 +300,7 @@ Linux
     >
     > `HEAD`在`git`中其实是一个指针，指向不同的版本号，回退也就是将`HEAD`指针重新指向了不同的版本信息。
     >
-    > ![](C:\Users\ASUS\OneDrive\程序员文件夹\微信截图_20210621152126.png)
+    > ![](https://jums.club/images/article/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210621152126.png)
     >
     > 除了使用`HEAD`之外，还可以使用`commit id`进行回退，每一次版本提交都有一个宇宙唯一的`commit id`，指定该`commit id`的前几位就行，`git`会自行查找。
     >
@@ -288,9 +357,9 @@ Linux
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 11:33:43 2021 +0800
     > 
-    >     Revert "add a txt file by jums"
+    >  Revert "add a txt file by jums"
     > 
-    >     This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
+    >  This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
     > ```
 
   - [x] checkout 
@@ -348,7 +417,7 @@ Linux
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:28:47 2021 +0800
     > 
-    >     add a txt file
+    >  add a txt file
     > $ git checkout topic
     > $ git cherry-pick db298e7
     > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
@@ -357,7 +426,7 @@ Linux
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:28:47 2021 +0800
     > 
-    >     add a txt file
+    >  add a txt file
     > ```
     >
     > **if use the options [-n], it's no commits in current branch.**
@@ -376,9 +445,9 @@ Linux
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:41:48 2021 +0800
     > 
-    >     add 2.txt
+    >  add 2.txt
     > 
-    >     (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
+    >  (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
     > ```
     >
     > **if use the options [-e] or [--edit], you can edit the file before you commit**
