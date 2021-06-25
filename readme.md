@@ -1,3 +1,5 @@
+
+
 # Linux
 
 可以掌握常用工具的日常使用场景：
@@ -185,6 +187,8 @@
   >
   > [ What does CORS means](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS)
   >
+  > [CORS tutorials: A guide to cross-origin resource sharing](https://auth0.com/blog/cors-tutorial-a-guide-to-cross-origin-resource-sharing/)
+  >
   > 网址形式如下：https://www.baidu.com:80/index.html，其中，`https`是协议，`www`是子域名，`baidu.com`是根域名，`80`是端口号，`index.html`是资源文件。
   >
   > > **同源策略**是指在[Web浏览器](https://zh.wikipedia.org/wiki/排版引擎)中，允许某个网页[脚本](https://zh.wikipedia.org/wiki/腳本)访问另一个网页的数据，但前提是这两个网页必须有相同的[URI](https://zh.wikipedia.org/wiki/统一资源标志符)、[主机名](https://zh.wikipedia.org/wiki/主機名稱)和[端口号](https://zh.wikipedia.org/wiki/通訊埠)，一旦两个网站满足上述条件，这两个网站就被认定为具有相同来源。此策略可防止某个网页上的恶意[脚本](https://zh.wikipedia.org/wiki/脚本)通过该页面的[文档对象模型](https://zh.wikipedia.org/wiki/文档对象模型)访问另一网页上的敏感数据。
@@ -195,11 +199,42 @@
   >
   > 在`协议`、`域名（包括根域名和子域名）`、`端口号`三者其中任何一项不一致的情况下，两个网址就不能进行互相通信，只有这三者都相同的情况下才可以进行通信，否则就叫**跨域**。
   >
+  > - a different scheme(http or https)
+  > - a different domain
+  > - a different port
+  >
   > > **为什么会有跨域限制？**
   > >
   > > 答：浏览器会有跨域限制，二服务器没有这种限制。
   >
   > 在HTML标签中，其中`img`、`link`、`script`、`iframe`这几个标签具有跨域性，可以直接访问不同域的资源。
+  >
+  > **figure it out**
+  >
+  > - set the header like this: 
+  >
+  >   ```bash
+  >   Access-Control-Allow-Origin: *  # if a request can be made from any origin
+  >   Access-Control-Allow-Origin: https://example.com # the origin that is allowed to make the request
+  >   ```
+  >
+  > **Two type of CORS Request**
+  >
+  > - simple request(`GET`、`POST`、`HEAD`)
+  >
+  > - preflight request(`OPTIONS`)
+  >
+  >   A preflight request example:
+  >
+  >   ```bash
+  >   # Request
+  >   curl -i -X OPTIONS localhost:3001/api/ping \
+  >   -H 'Access-Control-Request-Method: GET' \
+  >   -H 'Access-Control-Request-Headers: Content-Type, Accept' \
+  >   -H 'Origin: http://localhost:3000'
+  >   ```
+  >
+  >   
 
 - [x] https原理
 
@@ -229,6 +264,45 @@
 # Redis
 
 - [ ] hash,zset,set,string 等数据类型的常用指令和时间复杂度
+
+  > - [x] **string**: 
+  >
+  > add a key-value type data, use `set key value` command
+  >
+  > ```bash
+  > > set name zhangsan
+  > OK
+  > ```
+  >
+  >  read the value of the key given by user
+  >
+  > ```bash
+  > > get name
+  > "zhangsan"
+  > ```
+  >
+  > | 序号 | 命令及描述                                                   | means                             |
+  > | :--- | ------------------------------------------------------------ | --------------------------------- |
+  > | 1    | [SET key value](https://www.runoob.com/redis/strings-set.html) 设置指定 key 的值 | **add a new key-value type data** |
+  > | 2    | [GET key](https://www.runoob.com/redis/strings-get.html) 获取指定 key 的值。 | **read key;s value**              |
+  > | 3    | [GETRANGE key start end](https://www.runoob.com/redis/strings-getrange.html) 返回 key 中字符串值的子字符 | **read the substring of the key** |
+  > | 4    | [GETSET key value](https://www.runoob.com/redis/strings-getset.html) 将给定 key 的值设为 value ，并返回 key 的旧值(old value)。 | **change key's value**            |
+  > | 5    | [GETBIT key offset](https://www.runoob.com/redis/strings-getbit.html) 对 key 所储存的字符串值，获取指定偏移量上的位(bit)。 |                                   |
+  > | 6    | [MGET key1 [key2..\]](https://www.runoob.com/redis/strings-mget.html) 获取所有(一个或多个)给定 key 的值。 |                                   |
+  > | 7    | [SETBIT key offset value](https://www.runoob.com/redis/strings-setbit.html) 对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。 |                                   |
+  > | 8    | [SETEX key seconds value](https://www.runoob.com/redis/strings-setex.html) 将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以秒为单位)。 |                                   |
+  > | 9    | [SETNX key value](https://www.runoob.com/redis/strings-setnx.html) 只有在 key 不存在时设置 key 的值。 |                                   |
+  > | 10   | [SETRANGE key offset value](https://www.runoob.com/redis/strings-setrange.html) 用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。 |                                   |
+  > | 11   | [STRLEN key](https://www.runoob.com/redis/strings-strlen.html) 返回 key 所储存的字符串值的长度。 |                                   |
+  > | 12   | [MSET key value [key value ...\]](https://www.runoob.com/redis/strings-mset.html) 同时设置一个或多个 key-value 对。 |                                   |
+  > | 13   | [MSETNX key value [key value ...\]](https://www.runoob.com/redis/strings-msetnx.html) 同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。 |                                   |
+  > | 14   | [PSETEX key milliseconds value](https://www.runoob.com/redis/strings-psetex.html) 这个命令和 SETEX 命令相似，但它以毫秒为单位设置 key 的生存时间，而不是像 SETEX 命令那样，以秒为单位。 |                                   |
+  > | 15   | [INCR key](https://www.runoob.com/redis/strings-incr.html) 将 key 中储存的数字值增一。 |                                   |
+  > | 16   | [INCRBY key increment](https://www.runoob.com/redis/strings-incrby.html) 将 key 所储存的值加上给定的增量值（increment） 。 |                                   |
+  > | 17   | [INCRBYFLOAT key increment](https://www.runoob.com/redis/strings-incrbyfloat.html) 将 key 所储存的值加上给定的浮点增量值（increment） 。 |                                   |
+  > | 18   | [DECR key](https://www.runoob.com/redis/strings-decr.html) 将 key 中储存的数字值减一。 |                                   |
+  > | 19   | [DECRBY key decrement](https://www.runoob.com/redis/strings-decrby.html) key 所储存的值减去给定的减量值（decrement） 。 |                                   |
+  > | 20   | [APPEND key value](https://www.runoob.com/redis/strings-append.html) 如果 key 已经存在并且是一个字符串， APPEND 命令将指定的 value 追加到该 key 原来值（value）的末尾。 |                                   |
 
 - [ ] 掌握正确的redis分布式锁。
 
