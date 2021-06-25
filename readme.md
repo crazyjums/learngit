@@ -1,5 +1,3 @@
-
-
 # Linux
 
 可以掌握常用工具的日常使用场景：
@@ -97,11 +95,11 @@
     > $ rsync -av -e 'ssh -p 22' [source] user@remoteHostAddress:[destination] 
     > ```
     >
-    >  `-v`   display the details of the information
+    > `-v`   display the details of the information
     >
-    >  `-a`   archive mode
+    > `-a`   archive mode
     >
-    >  `-e`   log in to remote host
+    > `-e`   log in to remote host
 
 - [ ] 掌握ansible基本用法：主要用于批量查日志，执行命令。
 
@@ -179,9 +177,29 @@
     | Warning            | 警告实体可能存在的问题                                       | Warning: 199 Miscellaneous warning                           |
     | WWW-Authenticate   | 表明客户端请求实体应该使用的授权方案                         | WWW-Authenticate: Basic                                      |
 
-- [ ] 跨域 Cookie
+- [x] 跨域 Cookie
 
   > [COOKIE跨域获取问题](https://segmentfault.com/a/1190000039227924)
+  >
+  > [video tutorials in chinese](https://www.bilibili.com/video/BV1pA411u7Ji?from=search&seid=5785122887893488786)
+  >
+  > [ What does CORS means](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS)
+  >
+  > 网址形式如下：https://www.baidu.com:80/index.html，其中，`https`是协议，`www`是子域名，`baidu.com`是根域名，`80`是端口号，`index.html`是资源文件。
+  >
+  > > **同源策略**是指在[Web浏览器](https://zh.wikipedia.org/wiki/排版引擎)中，允许某个网页[脚本](https://zh.wikipedia.org/wiki/腳本)访问另一个网页的数据，但前提是这两个网页必须有相同的[URI](https://zh.wikipedia.org/wiki/统一资源标志符)、[主机名](https://zh.wikipedia.org/wiki/主機名稱)和[端口号](https://zh.wikipedia.org/wiki/通訊埠)，一旦两个网站满足上述条件，这两个网站就被认定为具有相同来源。此策略可防止某个网页上的恶意[脚本](https://zh.wikipedia.org/wiki/脚本)通过该页面的[文档对象模型](https://zh.wikipedia.org/wiki/文档对象模型)访问另一网页上的敏感数据。
+  > >
+  > > 同源策略对[Web应用程序](https://zh.wikipedia.org/wiki/Web应用程序)具有特殊意义，因为Web应用程序广泛依赖于[HTTP cookie](https://zh.wikipedia.org/wiki/Cookie)[[1\]](https://zh.wikipedia.org/wiki/同源策略#cite_note-httpcookierfc-1)来维持用户[会话](https://zh.wikipedia.org/wiki/会话)，所以必须将不相关网站严格分隔，以防止丢失数据泄露。
+  > >
+  > > 值得注意的是同源策略仅适用于脚本，这意味着某网站可以通过相应的[HTML标签](https://zh.wikipedia.org/wiki/HTML标签)[[2\]](https://zh.wikipedia.org/wiki/同源策略#cite_note-2)访问不同来源网站上的[图像](https://zh.wikipedia.org/wiki/图像)、[CSS](https://zh.wikipedia.org/wiki/CSS)和[动态加载](https://zh.wikipedia.org/wiki/動態加載)[脚本](https://zh.wikipedia.org/wiki/脚本)等资源。而[跨站请求伪造](https://zh.wikipedia.org/wiki/跨站请求伪造)就是利用同源策略不适用于[HTML标签](https://zh.wikipedia.org/wiki/HTML标签)的缺陷。
+  >
+  > 在`协议`、`域名（包括根域名和子域名）`、`端口号`三者其中任何一项不一致的情况下，两个网址就不能进行互相通信，只有这三者都相同的情况下才可以进行通信，否则就叫**跨域**。
+  >
+  > > **为什么会有跨域限制？**
+  > >
+  > > 答：浏览器会有跨域限制，二服务器没有这种限制。
+  >
+  > 在HTML标签中，其中`img`、`link`、`script`、`iframe`这几个标签具有跨域性，可以直接访问不同域的资源。
 
 - [x] https原理
 
@@ -224,7 +242,7 @@
 
 - [x] markdown语法和 typora 使用
 
-- [x] git command
+- [ ] git command
 
   - [x] add files to the remote repository
 
@@ -378,7 +396,7 @@
     > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (new_branch)
     > ```
 
-  - [x] stash 
+  - [ ] stash 
 
     > [git-stash](https://git-scm.com/docs/git-stash) - Stash the changes in a dirty working directory away
     >
