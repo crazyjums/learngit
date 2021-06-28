@@ -30,12 +30,143 @@
     > `||`，或符号
     >
     > `!`，非符号
-
+    
     计算文件中的所有空白行的总数
 
-- [ ] grep
+- [x] grep
 
-- [ ] find
+> [grep](https://man7.org/linux/man-pages/man1/grep.1.html), egrep, fgrep - print lines that match patterns
+>
+> Basic usage:
+>
+> - grep "search_content" filename
+>
+>   ```bash
+>    [root@192 pig]# grep "this" 1.txt 
+>   1 this is a line
+>   2 this is the no.2 line
+>   ```
+>
+> - grep `-c` "search_content" filename   //count the [search content] in filename
+>
+>   ```bash
+>   [root@192 pig]# grep -c "this" 1.txt 
+>   2
+>   ```
+>
+> - grep `-i` "search_content" filename   //ignore case
+>
+>   ```bash
+>   [root@192 pig]# grep -i "this" 1.txt 
+>   1 this is a line
+>   2 this is the no.2 line
+>   This is me.
+>   ```
+>
+> - grep `-n`  "search_content" filename   //show line number
+>
+>   ```bash
+>   [root@192 pig]# grep -n "this" 1.txt 
+>   1:1 this is a line
+>   2:2 this is the no.2 line
+>   ```
+>
+> - grep `-v` "search_content" filename   //match all strings in reverse
+>
+>   ```bash
+>   [root@192 pig]# grep -v "this" 1.txt 
+>   how are you now.
+>   I am fine, thank you.
+>   This is me.
+>   [root@192 pig]# cat 1.txt 
+>   1 this is a line
+>   2 this is the no.2 line
+>   how are you now.
+>   I am fine, thank you.
+>   This is me.
+>   ```
+>
+> - union the parameters together
+>
+>   ```bash
+>   [root@192 pig]# grep -ic "this" 1.txt 
+>   3
+>   ```
+>
+> Regular Match:
+>
+> - `*`: Refers to match one character zero or more times
+>
+>   ![](https://jums.club/images/article/微信截图_20210628162948.png)
+>
+> - `.`: When you use it only, it means match all strings. If you use it with search content, it means any character.
+>
+>   ![](https://jums.club/images/article/微信截图_20210628162911.png)
+>
+>   ![](https://jums.club/images/article/微信截图_20210628163024.png)
+>
+> - `{n,m}`: Match a character between `n` and `m` times.
+>
+>   ![](https://jums.club/images/article/微信截图_20210628163822.png)
+>
+> - `^`: Start character.
+>
+> - `$`: End character.    //Use `^` and `$` can match the IP address specifically.
+>
+>   ![](https://jums.club/images/article/微信截图_20210628163947.png)
+>
+> - `^$`: This means match a empty line.
+>
+>   ![](https://jums.club/images/article/微信截图_20210628164225.png)
+>
+> - `\b`: Bountdary match.
+>
+>   ![](https://jums.club/images/article/微信截图_20210628165211.png)
+>
+> - `-B`: None boundary match. 
+>
+>   ![](https://jums.club/images/article/微信截图_20210628165538.png)
+>
+> - `[]`: range matge. For example, [0-9] refers to all digits between 0 and 9.    //[a-z]. [A-Z]. [0-9]
+> - `\w`: Refers to `[0-9a-zA-Z]`.
+> - `\W`: Refers to `[^0-9a-zA-Z]`
+>
+> WildCard:
+>
+> - `?`: Match the previous character zero or one time.
+>
+> ![](https://jums.club/images/article/微信截图_20210628170307.png)
+>
+> - `+`: Match the previous character one or more times.
+>
+>   ![](https://jums.club/images/article/微信截图_20210628170521.png)
+>
+> - `()`: It's a selection, offen use with `|` together, `|` means or.
+>
+>   ![](https://jums.club/images/article/微信截图_20210628171103.png)
+
+- [x] find
+
+  > [find](https://man7.org/linux/man-pages/man1/find.1.html) - search for files in a directory hierarchy
+  >
+  > [find tutorials in chinese](https://www.linuxcool.com/find)
+  >
+  > Common parameters:
+  >
+  > | -name  | 按名称查找 |
+  > | ------ | ---------- |
+  > | -size  | 按大小查找 |
+  > | -user  | 按属性查找 |
+  > | -type  | 按类型查找 |
+  > | -iname | 忽略大小写 |
+  >
+  > - 查找`/etc`目录下的所有配置文件
+  >
+  >   ```bash
+  >   $ find /etc/ -name "*.conf"
+  >   ```
+  >
+  >   
 
 - [x] curl
 
@@ -97,11 +228,11 @@
     > $ rsync -av -e 'ssh -p 22' [source] user@remoteHostAddress:[destination] 
     > ```
     >
-    > `-v`   display the details of the information
+    >  `-v`   display the details of the information
     >
-    > `-a`   archive mode
+    >  `-a`   archive mode
     >
-    > `-e`   log in to remote host
+    >  `-e`   log in to remote host
 
 - [ ] 掌握ansible基本用法：主要用于批量查日志，执行命令。
 
@@ -316,7 +447,7 @@
 
 - [x] markdown语法和 typora 使用
 
-- [ ] git command
+- [x] git command
 
   - [x] add files to the remote repository
 
@@ -449,9 +580,9 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 11:33:43 2021 +0800
     > 
-    >  Revert "add a txt file by jums"
+    >     Revert "add a txt file by jums"
     > 
-    >  This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
+    >     This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
     > ```
 
   - [x] checkout 
@@ -470,7 +601,7 @@
     > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (new_branch)
     > ```
 
-  - [ ] stash 
+  - [x] stash 
 
     > [git-stash](https://git-scm.com/docs/git-stash) - Stash the changes in a dirty working directory away
     >
@@ -509,7 +640,7 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:28:47 2021 +0800
     > 
-    >  add a txt file
+    >     add a txt file
     > $ git checkout topic
     > $ git cherry-pick db298e7
     > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
@@ -518,7 +649,7 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:28:47 2021 +0800
     > 
-    >  add a txt file
+    >     add a txt file
     > ```
     >
     > **if use the options [-n], it's no commits in current branch.**
@@ -537,9 +668,9 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:41:48 2021 +0800
     > 
-    >  add 2.txt
+    >     add 2.txt
     > 
-    >  (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
+    >     (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
     > ```
     >
     > **if use the options [-e] or [--edit], you can edit the file before you commit**
