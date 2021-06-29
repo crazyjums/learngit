@@ -1,5 +1,3 @@
-
-
 # Linux
 
 可以掌握常用工具的日常使用场景：
@@ -35,115 +33,117 @@
 
 - [x] grep
 
-> [grep](https://man7.org/linux/man-pages/man1/grep.1.html), egrep, fgrep - print lines that match patterns
->
-> Basic usage:
->
-> - grep "search_content" filename
->
->   ```bash
->    [root@192 pig]# grep "this" 1.txt 
->   1 this is a line
->   2 this is the no.2 line
->   ```
->
-> - grep `-c` "search_content" filename   //count the [search content] in filename
->
->   ```bash
->   [root@192 pig]# grep -c "this" 1.txt 
->   2
->   ```
->
-> - grep `-i` "search_content" filename   //ignore case
->
->   ```bash
->   [root@192 pig]# grep -i "this" 1.txt 
->   1 this is a line
->   2 this is the no.2 line
->   This is me.
->   ```
->
-> - grep `-n`  "search_content" filename   //show line number
->
->   ```bash
->   [root@192 pig]# grep -n "this" 1.txt 
->   1:1 this is a line
->   2:2 this is the no.2 line
->   ```
->
-> - grep `-v` "search_content" filename   //match all strings in reverse
->
->   ```bash
->   [root@192 pig]# grep -v "this" 1.txt 
->   how are you now.
->   I am fine, thank you.
->   This is me.
->   [root@192 pig]# cat 1.txt 
->   1 this is a line
->   2 this is the no.2 line
->   how are you now.
->   I am fine, thank you.
->   This is me.
->   ```
->
-> - union the parameters together
->
->   ```bash
->   [root@192 pig]# grep -ic "this" 1.txt 
->   3
->   ```
->
-> Regular Match:
->
-> - `*`: Refers to match one character zero or more times
->
->   ![](https://jums.club/images/article/微信截图_20210628162948.png)
->
-> - `.`: When you use it only, it means match all strings. If you use it with search content, it means any character.
->
->   ![](https://jums.club/images/article/微信截图_20210628162911.png)
->
->   ![](https://jums.club/images/article/微信截图_20210628163024.png)
->
-> - `{n,m}`: Match a character between `n` and `m` times.
->
->   ![](https://jums.club/images/article/微信截图_20210628163822.png)
->
-> - `^`: Start character.
->
-> - `$`: End character.    //Use `^` and `$` can match the IP address specifically.
->
->   ![](https://jums.club/images/article/微信截图_20210628163947.png)
->
-> - `^$`: This means match a empty line.
->
->   ![](https://jums.club/images/article/微信截图_20210628164225.png)
->
-> - `\b`: Bountdary match.
->
->   ![](https://jums.club/images/article/微信截图_20210628165211.png)
->
-> - `-B`: None boundary match. 
->
->   ![](https://jums.club/images/article/微信截图_20210628165538.png)
->
-> - `[]`: range matge. For example, [0-9] refers to all digits between 0 and 9.    //[a-z]. [A-Z]. [0-9]
-> - `\w`: Refers to `[0-9a-zA-Z]`.
-> - `\W`: Refers to `[^0-9a-zA-Z]`
->
-> WildCard:
->
-> - `?`: Match the previous character zero or one time.
->
-> ![](https://jums.club/images/article/微信截图_20210628170307.png)
->
-> - `+`: Match the previous character one or more times.
->
->   ![](https://jums.club/images/article/微信截图_20210628170521.png)
->
-> - `()`: It's a selection, offen use with `|` together, `|` means or.
->
->   ![](https://jums.club/images/article/微信截图_20210628171103.png)
+  > [grep](https://man7.org/linux/man-pages/man1/grep.1.html), egrep, fgrep - print lines that match patterns. Search for content in a file.
+  >
+  > Basic usage:
+  >
+  > - grep "search_content" filename
+  >
+  >   ```bash
+  >    [root@192 pig]# grep "this" 1.txt 
+  >   1 this is a line
+  >   2 this is the no.2 line
+  >   ```
+  >
+  > - grep `-c` "search_content" filename   //count the [search content] in filename
+  >
+  >   ```bash
+  >   [root@192 pig]# grep -c "this" 1.txt 
+  >   2
+  >   ```
+  >
+  > - grep `-i` "search_content" filename   //ignore case
+  >
+  >   ```bash
+  >   [root@192 pig]# grep -i "this" 1.txt 
+  >   1 this is a line
+  >   2 this is the no.2 line
+  >   This is me.
+  >   ```
+  >
+  > - grep `-n`  "search_content" filename   //show line number
+  >
+  >   ```bash
+  >   [root@192 pig]# grep -n "this" 1.txt 
+  >   1:1 this is a line
+  >   2:2 this is the no.2 line
+  >   ```
+  >
+  > - grep `-v` "search_content" filename   //match all strings in reverse
+  >
+  >   ```bash
+  >   [root@192 pig]# grep -v "this" 1.txt 
+  >   how are you now.
+  >   I am fine, thank you.
+  >   This is me.
+  >   [root@192 pig]# cat 1.txt 
+  >   1 this is a line
+  >   2 this is the no.2 line
+  >   how are you now.
+  >   I am fine, thank you.
+  >   This is me.
+  >   ```
+  >
+  > - union the parameters together
+  >
+  >   ```bash
+  >   [root@192 pig]# grep -ic "this" 1.txt 
+  >   3
+  >   ```
+  >
+  > Regular Match:
+  >
+  > - `*`: Refers to match one character zero or more times
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628162948.png)
+  >
+  > - `.`: When you use it only, it means match all strings. If you use it with search content, it means any character.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628162911.png)
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628163024.png)
+  >
+  > - `{n,m}`: Match a character between `n` and `m` times.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628163822.png)
+  >
+  > - `^`: Start character.
+  >
+  > - `$`: End character.    Use `^` and `$` can match the IP address specifically.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628163947.png)
+  >
+  > - `^$`: This means match a empty line.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628164225.png)
+  >
+  > - `\b`: Bountdary match.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628165211.png)
+  >
+  > - `-B`: None boundary match. 
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628165538.png)
+  >
+  > - `[]`: range matge. For example, [0-9] refers to all digits between 0 and 9.    //[a-z]. [A-Z]. [0-9]
+  >
+  > - `\w`: Refers to `[0-9a-zA-Z]`.
+  >
+  > - `\W`: Refers to `[^0-9a-zA-Z]`
+  >
+  > WildCard:
+  >
+  > - `?`: Match the previous character zero or one time.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628170307.png)
+  >
+  > - `+`: Match the previous character one or more times.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628170521.png)
+  >
+  > - `()`: It's a selection, offen use with `|` together, `|` means or.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210628171103.png)
 
 - [x] find
 
@@ -160,13 +160,70 @@
   > | -type  | 按类型查找 |
   > | -iname | 忽略大小写 |
   >
-  > - 查找`/etc`目录下的所有配置文件
+  > - Find all confgure files in `/etc` directory
   >
   >   ```bash
   >   $ find /etc/ -name "*.conf"
   >   ```
   >
-  >   
+  > - Find in current directory
+  >
+  >   ```bash
+  >   $ find . -name "1*"
+  >   ```
+  >
+  > - Find files by type
+  >
+  >   | file type | refers to   | file type | refers to          |
+  >   | --------- | ----------- | --------- | ------------------ |
+  >   | f         | a file      | b         | a block divice     |
+  >   | d         | a directory | c         | a character divice |
+  >   | l         | a soft link | p         | pipeline           |
+  >   | s         | a socket    |           |                    |
+  >
+  >   ```bash
+  >   $ find -type f 
+  >   ```
+  >
+  > - `find -exec` or `find -ok`, execute a command after find. The  template  is `-exex {} \;`, You should know there is a space between `{}` and `\;`.
+  >
+  >   ```bash
+  >   $ find -type d -empty -exec touch /2.txt {} \;   // find a enpty directory, and touch a file named 2.txt
+  >   $ find -type d -empty -ok touch /2.txt {} \;   // when you use "ok" instead of "exec", it will let you confirm and execute.
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629115716.png)
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629115748.png)
+  >
+  > - `-size`, Find files by size. 
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629120948.png)
+  >
+  > - `-user`. Find by owner. 
+  >
+  >   ```bash
+  >   $ find /directory -user [uesr name]
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629121218.png)
+  >
+  > - `-group`. Find by group.
+  >
+  > - Mutli-condition find. `-a` refers to and, `-o` refers to or.
+  >
+  >   `locate` command is faster than `find`, because `locate` is find from a database, but this database need manual to update.
+  >
+  >   ```bash
+  >   // install locate
+  >   $ sudo yum install mlocate
+  >   // update database
+  >   $ updatedb
+  >   // find a file
+  >   $ locate /etc/my
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629123141.png)
 
 - [x] curl
 
@@ -228,17 +285,118 @@
     > $ rsync -av -e 'ssh -p 22' [source] user@remoteHostAddress:[destination] 
     > ```
     >
-    >  `-v`   display the details of the information
+    > `-v`   display the details of the information
     >
-    >  `-a`   archive mode
+    > `-a`   archive mode
     >
-    >  `-e`   log in to remote host
+    > `-e`   log in to remote host
 
-- [ ] 掌握ansible基本用法：主要用于批量查日志，执行命令。
+- [x] 掌握ansible基本用法：主要用于批量查日志，执行命令。
 
   > [Ansible中文权威指南](https://ansible-tran.readthedocs.io/en/latest/index.html)
+  >
+  > [automate-with-ansible](https://github.com/chusiang/automate-with-ansible)
+  >
+  > [automate-with-ansible in simple chinese](https://www.w3cschool.cn/automate_with_ansible/)
+  >
+  > - `ping`
+  >
+  >   enable this config, `record_host_keys=Flase`. And add the host's ip address in the file(`/etc/ansible/hosts`).
+  >
+  >   ```bash
+  >   $ ssh-keygen
+  >   $ ssh-copy-id [ip_address]
+  >   $ ansible -m ping
+  >   ```
+  >
+  > - `ansible-playbook`: execute a script.
+  >
+  >   ```bash
+  >   $ ansible-playbook hello.yml
+  >   $ cat hello.yml
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629153439.png)
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629153459.png)
+  >
+  > - `ansible-vault`: encrypt or decrypt a file, to ensure the secrity of the file.
+  >
+  >   ```bash
+  >   $ ansible-vault encrypt hello.yml
+  >   $ ansible-vault decrypt hello.yml
+  >   ```
+  >
+  > - `ansible-console`: A interact command line of ansible.
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629154046.png)
+  >
+  > Ansible Module:
+  >
+  > - use module:
+  >
+  >   - command: execute only system command
+  >   - shell: execute the command via shell process
+  >   - raw: execute the low level command
+  >
+  >   ```bash
+  >   $ ansible [host group] -m [module name] -a "[command line]"
+  >   $ ansible webserver -m command/shell -a "ls /etc"
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629162327.png)
+  >
+  >   **Change default module:**
+  >
+  >   [A tutorials of ansible module](https://hoxis.github.io/ansible-commands-modules-command-shell-raw.html)
+  >
+  >   change config file(/etc/ansible/ansible.cfg), enable the line and change it.
+  >
+  >   ```bash
+  >   module_name = command  // change it to shell
+  >   module_name = shell
+  >   ```
+  >
+  > - `script`: Run a script on the remote hosts
+  >
+  >   ```bash
+  >   $ ansible [host group] -m script -a "test.sh"
+  >   ```
+  >
+  > - `copy`: Copy files from current host to remote hosts.
+  >
+  >   ```bash
+  >   $ ansible [host group] -m copy -a "src=/etc/systemfig dest=data/os.txt" owner=[user name] mode=600
+  >   $ ansible webserver -m copy -a "src=/home/centos/pig/1.txt dest=/home/root123/2.txt owner=root123 mode=600"
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629164240.png)
+  >
+  > - `fetch`: Fetch a file from remote hosts. This `must` be a file, not a directory. Like `copy`.
+  >
+  >   ```BASH
+  >   $ ansible all -m fetch -a "src=/etc/os-release dest=/home/centos/pig/tem"
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629164945.png)
+  >
+  > - `file`: change file's attributes, create a empty file.
+  >
+  >   ```bash
+  >   $ ansible webserver -m file -a "path=/home/root123/new.txt state=touch"
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629165604.png)
+  >
+  > - `unarchive`: unzip a file.
+  >
+  >   ```bash
+  >   $ ansible webserver -m unarchive -a "src=./etc.tar.gz dest=/home/root123/ owner=root123 mode=600"   // push the zip file to the remote hosts and unzip it.
+  >   ```
+  >
+  >   ![](https://jums.club/images/article/微信截图_20210629170702.png)
 
-# Http：
+# Http： 
 
 - [x] 常用header: Host
 
@@ -365,7 +523,7 @@
   >   -H 'Origin: http://localhost:3000'
   >   ```
   >
-  >   
+  > 
 
 - [x] https原理
 
@@ -580,9 +738,9 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 11:33:43 2021 +0800
     > 
-    >     Revert "add a txt file by jums"
+    >  Revert "add a txt file by jums"
     > 
-    >     This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
+    >  This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
     > ```
 
   - [x] checkout 
@@ -640,7 +798,7 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:28:47 2021 +0800
     > 
-    >     add a txt file
+    >  add a txt file
     > $ git checkout topic
     > $ git cherry-pick db298e7
     > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
@@ -649,7 +807,7 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:28:47 2021 +0800
     > 
-    >     add a txt file
+    >  add a txt file
     > ```
     >
     > **if use the options [-n], it's no commits in current branch.**
@@ -668,9 +826,9 @@
     > Author: crazyjums <crazyjums@gmail.com>
     > Date:   Thu Jun 24 10:41:48 2021 +0800
     > 
-    >     add 2.txt
+    >  add 2.txt
     > 
-    >     (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
+    >  (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
     > ```
     >
     > **if use the options [-e] or [--edit], you can edit the file before you commit**
