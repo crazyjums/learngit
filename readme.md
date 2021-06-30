@@ -190,7 +190,8 @@
   > - `find -exec` or `find -ok`, execute a command after find. The  template  is `-exex {} \;`, You should know there is a space between `{}` and `\;`.
   >
   >   ```bash
-  >   $ find -type d -empty -exec touch /2.txt {} \;   // find a enpty directory, and touch a file named 2.txt$ $ find -type d -empty -ok touch /2.txt {} \;   // when you use "ok" instead of "exec", it will let you confirm and execute.
+  >   $ find -type d -empty -exec touch /2.txt {} \;   // find a enpty directory, and touch a file named 2.txt
+  >   $ $ find -type d -empty -ok touch /2.txt {} \;   // when you use "ok" instead of "exec", it will let you confirm and execute.
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629115716.png)
@@ -216,7 +217,12 @@
   >   `locate` command is faster than `find`, because `locate` is find from a database, but this database need manual to update.
   >
   >   ```bash
-  >   // install locate$ sudo yum install mlocate// update database$ updatedb// find a file$ locate /etc/my
+  >   // install locate
+  >   $ sudo yum install mlocate
+  >   // update database
+  >   $ updatedb
+  >   // find a file
+  >   $ locate /etc/my
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629123141.png)
@@ -298,13 +304,15 @@
   >   enable this config, `record_host_keys=Flase`. And add the host's ip address in the file(`/etc/ansible/hosts`).
   >
   >   ```bash
-  >   $ ssh-keygen$ ssh-copy-id [ip_address]$ ansible -m ping
+  >   $ ssh-keygen$ ssh-copy-id [ip_address]
+  >   $ ansible -m ping
   >   ```
   >
   > - `ansible-playbook`: execute a script.
   >
   >   ```bash
-  >   $ ansible-playbook hello.yml$ cat hello.yml
+  >   $ ansible-playbook hello.yml
+  >   $ cat hello.yml
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629153439.png)
@@ -314,7 +322,8 @@
   > - `ansible-vault`: encrypt or decrypt a file, to ensure the secrity of the file.
   >
   >   ```bash
-  >   $ ansible-vault encrypt hello.yml$ ansible-vault decrypt hello.yml
+  >   $ ansible-vault encrypt hello.yml
+  >   $ ansible-vault decrypt hello.yml
   >   ```
   >
   > - `ansible-console`: A interact command line of ansible.
@@ -330,7 +339,8 @@
   >   - raw: execute the low level command
   >
   >   ```bash
-  >   $ ansible [host group] -m [module name] -a "[command line]"$ ansible webserver -m command/shell -a "ls /etc"
+  >   $ ansible [host group] -m [module name] -a "[command line]"
+  >   $ ansible webserver -m command/shell -a "ls /etc"
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629162327.png)
@@ -490,7 +500,8 @@
   > - set the header like this: 
   >
   >   ```bash
-  >   Access-Control-Allow-Origin: *  # if a request can be made from any originAccess-Control-Allow-Origin: https://example.com # the origin that is allowed to make the request
+  >   Access-Control-Allow-Origin: *  # if a request can be made from any origin
+  >   Access-Control-Allow-Origin: https://example.com # the origin that is allowed to make the request
   >   ```
   >
   > **Two type of CORS Request**
@@ -502,7 +513,11 @@
   >   A preflight request example:
   >
   >   ```bash
-  >   # Requestcurl -i -X OPTIONS localhost:3001/api/ping \-H 'Access-Control-Request-Method: GET' \-H 'Access-Control-Request-Headers: Content-Type, Accept' \-H 'Origin: http://localhost:3000'
+  >   # Request
+  >   curl -i -X OPTIONS localhost:3001/api/ping \
+  >   -H 'Access-Control-Request-Method: GET' \
+  >   -H 'Access-Control-Request-Headers: Content-Type, Accept' \
+  >   -H 'Origin: http://localhost:3000'
   >   ```
   >
   > 
@@ -534,7 +549,7 @@
 
 # Redis
 
-- [ ] hash,zset,set,string 等数据类型的常用指令和时间复杂度
+- [x] hash,zset,set,string 等数据类型的常用指令和时间复杂度
 
   > [A tutorials of my blog](https://jums.club/install-and-run-redis-on-docker/)
   >
@@ -557,14 +572,10 @@
   > ```bash
   > $ sudo yum update
   > $ sudo yum install epel-release
-  > $ sudo yum install redis
-  > //start redis on linux
-  > $ systemctl start redis
-  > //To automatically start redis on boot
-  > $ systemctl enable redis
-  > //verify the installtion
-  > $ redis-cli ping  
-  > PONG   //If you get this, it means successful.
+  > $ sudo yum install redis  //start redis on linux
+  > $ systemctl start redis   //To automatically start redis on boot
+  > $ systemctl enable redis  //verify the installtion
+  > $ redis-cli ping  PONG    //If you get this, it means successful.
   > ```
 
   > connect remote redis server
@@ -573,14 +584,14 @@
   >
   > ```bash
   > iptables -N REDIS
-  > iptables -A REDIS -s 192.168.10.1 -j ACCEPT
-  > iptables -A REDIS -s 192.168.10.2 -j ACCEPT
+  > iptables -A REDIS -s 192.168.10.1 -j ACCEPT   //ACCEPT YOUR IP_ADDRESS
+  > iptables -A REDIS -s 192.168.10.2 -j ACCEPT   //ACCEPT YOUR IP_ADDRESS
   > iptables -A REDIS -j LOG --log-prefix "unauth-redis-access"
   > iptables -A REDIS -j REJECT --reject-with icmp-port-unreachable
   > iptables -I INPUT -p tcp --dport 6379 -j REDIS
-  > ```
-  >
   > 
+  > iptables -L   //view routes
+  > ```
 
   > - [x] **string**: 
   >
@@ -630,7 +641,6 @@
   > OK
   > > hget hash1 a
   > "123"
-  > 
   > ```
   >
   > | 序号 | 命令及描述                                                   |
@@ -653,7 +663,7 @@
   > - [x] set
   >
   > ```bash
-  > > sadd key value [key value ...]
+  > > sadd key value [key value ...]  
   > // for example
   > > sadd jj zhangsan
   > (integer) 1
@@ -687,8 +697,6 @@
   > ```bash
   > > lpush key value [value ...]
   > ```
-  >
-  > 
   >
   > | 序号 | 命令及描述                                                   |
   > | :--- | :----------------------------------------------------------- |
@@ -757,7 +765,8 @@
     > After that, you also should `add` the files to repository, use the following command:
     >
     > ```bash
-    > $ git add [file name]$ git commit -m ""  # you can't add the [file name] here, or you will get a error
+    > $ git add [file name]
+    > $ git commit -m ""  # you can't add the [file name] here, or you will get a error
     > ```
 
   - [x] rebase
@@ -773,7 +782,24 @@
     > `git log`信息如下：
     >
     > ```bash
-    > $ git logcommit 466755c74ed4fd27059f6b0e4f42d0c3dcb8b663 (HEAD -> master, origin/master)Author: crazyjums <crazyjums@gmail.com>Date:   Mon Jun 21 14:58:11 2021 +0800add a second titlecommit b57119f13a741f116daabfebd27b51a990b7322aAuthor: crazyjums <crazyjums@gmail.com>Date:   Mon Jun 21 14:39:35 2021 +0800modified the file, add a new linecommit 1f7990b84caf752f9e22d1dbcf215d5285066d25Author: crazyjums <crazyjums@gmail.com>Date:   Mon Jun 21 14:27:27 2021 +0800first time to commit
+    > $ git log
+    > commit 466755c74ed4fd27059f6b0e4f42d0c3dcb8b663 (HEAD -> master, origin/master)
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Mon Jun 21 14:58:11 2021 +0800
+    > 
+    > add a second title
+    > 
+    > commit b57119f13a741f116daabfebd27b51a990b7322a
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Mon Jun 21 14:39:35 2021 +0800
+    > 
+    > modified the file, add a new line
+    > 
+    > commit 1f7990b84caf752f9e22d1dbcf215d5285066d25
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Mon Jun 21 14:27:27 2021 +0800
+    > 
+    > first time to commit
     > ```
     >
     > `HEAD`表示当前的版本号，如果需要回退到上一个版本号，则可以使用`HEAD^`、上上一个版本号则是`HEAD^^`、往上倒100个可以在`HEAD`后面写上100个`^`符号，当然也可以写成`HEAD~100`。
@@ -785,13 +811,25 @@
     > 除了使用`HEAD`之外，还可以使用`commit id`进行回退，每一次版本提交都有一个宇宙唯一的`commit id`，指定该`commit id`的前几位就行，`git`会自行查找。
     >
     > ```bash
-    > $ git reset --hard HEAD~2HEAD is now at 1f7990b first time to commit$ git reset --hard 466755HEAD is now at 466755c add a second title
+    > $ git reset --hard HEAD~2
+    > HEAD is now at 1f7990b first time to commit
+    > 
+    > $ git reset --hard 466755
+    > HEAD is now at 466755c add a second title
     > ```
     >
     > 在使用`git log`命令时，只会显示当前命令窗口的历史提交记录，如果电脑重启之后，在使用`git log`命令出现的历史记录会是空，但是在`git`中，就算是重启电脑之后，还是有办法找到每一次的历史提交记录，可以使用命令：`git reflog`：
     >
     > ```bash
-    > $ git reflog1f7990b (HEAD -> master) HEAD@{0}: reset: moving to HEAD~2466755c (origin/master) HEAD@{1}: reset: moving to 4667551f7990b (HEAD -> master) HEAD@{2}: reset: moving to HEAD~2466755c (origin/master) HEAD@{3}: reset: moving to 466755b57119f HEAD@{4}: reset: moving to HEAD^466755c (origin/master) HEAD@{5}: commit: add a second titleb57119f HEAD@{6}: commit: modified the file, add a new line1f7990b (HEAD -> master) HEAD@{7}: commit (initial): first time to commit
+    > $ git reflog
+    > 1f7990b (HEAD -> master) HEAD@{0}: reset: moving to HEAD~2
+    > 466755c (origin/master) HEAD@{1}: reset: moving to 466755
+    > 1f7990b (HEAD -> master) HEAD@{2}: reset: moving to HEAD~2
+    > 466755c (origin/master) HEAD@{3}: reset: moving to 466755
+    > b57119f HEAD@{4}: reset: moving to HEAD^
+    > 466755c (origin/master) HEAD@{5}: commit: add a second title
+    > b57119f HEAD@{6}: commit: modified the file, add a new line
+    > 1f7990b (HEAD -> master) HEAD@{7}: commit (initial): first time to commit
     > ```
     >
     > 在使用`reset`等命令修改了本地文件之后，也就是当前本地电脑上的文件不是`git`托管平台的最新版本的时候，需要使用`git pull`命令将`git`平台的命令拉过来。
@@ -801,7 +839,12 @@
     > ```
     >
     > ```bash
-    > $ git pull git@github.com:crazyjums/learngit.git masterFrom github.com:crazyjums/learngit * branch            master     -> FETCH_HEADAuto-merging readme.mdCONFLICT (content): Merge conflict in readme.mdAutomatic merge failed; fix conflicts and then commit the result.
+    > $ git pull git@github.com:crazyjums/learngit.git master
+    > From github.com:crazyjums/learngit
+    >  * branch            master     -> FETCH_HEAD
+    > Auto-merging readme.md
+    > CONFLICT (content): Merge conflict in readme.md
+    > Automatic merge failed; fix conflicts and then commit the result.
     > ```
 
   - [x] revert 
@@ -813,7 +856,16 @@
     > This command's usage just like the `git reset`.
     >
     > ```bash
-    > $ git revert HEAD^  # go back to last version$ git revert HEAD~[number]  # go back to previous version# you can see the trackability information at `git revert`:commit d567e6e3e14165ffa8febd4c62bac2fa413a1509Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 11:33:43 2021 +0800 Revert "add a txt file by jums" This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
+    > $ git revert HEAD^  # go back to last version
+    > $ git revert HEAD~[number]  # go back to previous version
+    > # you can see the trackability information at `git revert`:
+    > commit d567e6e3e14165ffa8febd4c62bac2fa413a1509
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 11:33:43 2021 +0800
+    > 
+    >  Revert "add a txt file by jums"
+    > 
+    >  This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
     > ```
 
   - [x] checkout 
@@ -825,7 +877,11 @@
     > ```
     >
     > ```bash
-    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)$ git checkout new_branchSwitched to branch 'new_branch'ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (new_branch)
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)
+    > $ git checkout new_branch
+    > Switched to branch 'new_branch'
+    > 
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (new_branch)
     > ```
 
   - [x] stash 
@@ -839,7 +895,13 @@
     > - 经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是`git stash`命令。储藏(stash)可以获取你工作目录的中间状态——也就是你修改过的被追踪的文件和暂存的变更——并将它保存到一个未完结变更的堆栈中，随时可以重新应用。
     >
     > ```bash
-    > $ git stash list  # display all stash version$ git stash pop   # get the top of the stash stack version$ git stask apply [version number]# when there is a lot of stash versions, you can use this command to specify the version number$ git stash   # save current working area to the stash version$ git stash save [a stash name]  # the same as the "git stash", but this version will get a nick name you named it.$ git stash drop  # delete the top of stash stack's version$ git stash show [version number]   # use this command to view specific information of the working area
+    > $ git stash list  # display all stash version
+    > $ git stash pop   # get the top of the stash stack version
+    > $ git stask apply [version number]# when there is a lot of stash versions, you can use this command to specify the version number
+    > $ git stash   # save current working area to the stash version
+    > $ git stash save [a stash name]  # the same as the "git stash", but this version will get a nick name you named it.
+    > $ git stash drop  # delete the top of stash stack's version
+    > $ git stash show [version number]   # use this command to view specific information of the working area
     > ```
 
   - [x] cherry-pick
@@ -853,7 +915,24 @@
     > [git cherry-pick tutorials](http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)  (more commands informations here)
     >
     > ```bash
-    > # at master branch$ git add 1.txt && git commit -m "add a txt file"ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)$ git logcommit db298e7bb373711438efdab0e64bbab72b5b5cac (HEAD -> master)Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 10:28:47 2021 +0800 add a txt file$ git checkout topic$ git cherry-pick db298e7ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)$ git logcommit ed9bd8a0e76044141efdf26547092eae24e38400 (HEAD -> topic)Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 10:28:47 2021 +0800 add a txt file
+    > # at master branch
+    > $ git add 1.txt && git commit -m "add a txt file"
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)
+    > $ git log
+    > commit db298e7bb373711438efdab0e64bbab72b5b5cac (HEAD -> master)
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 10:28:47 2021 +0800
+    > 
+    >  add a txt file
+    > $ git checkout topic
+    > $ git cherry-pick db298e7
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
+    > $ git log
+    > commit ed9bd8a0e76044141efdf26547092eae24e38400 (HEAD -> topic)
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 10:28:47 2021 +0800
+    > 
+    >  add a txt file
     > ```
     >
     > **if use the options [-n], it's no commits in current branch.**
@@ -865,7 +944,16 @@
     > **if use the options [-x], you can track the commits**
     >
     > ```bash
-    > $ git cherry-pick -x [commit-id]ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)$ git logcommit 6ba043389d5940b743ab39e37419ebc82685b0af (HEAD -> topic)Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 10:41:48 2021 +0800 add 2.txt (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
+    > $ git cherry-pick -x [commit-id]
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
+    > $ git log
+    > commit 6ba043389d5940b743ab39e37419ebc82685b0af (HEAD -> topic)
+    > Author: crazyjums <crazyjums@gmail.com>
+    > Date:   Thu Jun 24 10:41:48 2021 +0800
+    > 
+    >  add 2.txt
+    > 
+    >  (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
     > ```
     >
     > **if use the options [-e] or [--edit], you can edit the file before you commit**
@@ -879,13 +967,20 @@
     > branche是git tree中的分支，其中主分支是master
     >
     > ```bash
-    > $ git branch <branch name> # create a new branch $ git push origin <branch name> # push the new branch to remote repository$ git branch -d <branch name> # delete the local branch$ git push origin :<branch name> # delete the remote repository branch$ git chechout <branch name> # swtich to <branch name> branch$ git branch -a # show all branch of your repository
+    > $ git branch <branch name> # create a new branch 
+    > $ git push origin <branch name> # push the new branch to remote repository
+    > $ git branch -d <branch name> # delete the local branch
+    > $ git push origin :<branch name> # delete the remote repository branch
+    > $ git chechout <branch name> # swtich to <branch name> branch
+    > $ git branch -a # show all branch of your repository
     > ```
 
   - [x] delete file from remote repository
 
     > ```bash
-    > $ git rm <file name> or <dic name>$ git commit -m ""$ git push origin <branch name>
+    > $ git rm <file name> or <dic name>
+    > $ git commit -m ""
+    > $ git push origin <branch name>
     > ```
 
 - [x] ssh 秘钥登陆原理
