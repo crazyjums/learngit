@@ -1,3 +1,5 @@
+
+
 # Linux
 
 可以掌握常用工具的日常使用场景：
@@ -28,7 +30,7 @@
     > `||`，或符号
     >
     > `!`，非符号
-    
+
     计算文件中的所有空白行的总数
 
 - [x] grep
@@ -109,7 +111,7 @@
   >
   > - `^`: Start character.
   >
-  > - `$`: End character.    Use `^` and `$` can match the IP address specifically.
+  > - `$`: End character.    //Use `^` and `$` can match the IP address specifically.
   >
   >   ![](https://jums.club/images/article/微信截图_20210628163947.png)
   >
@@ -135,7 +137,7 @@
   >
   > - `?`: Match the previous character zero or one time.
   >
-  >   ![](https://jums.club/images/article/微信截图_20210628170307.png)
+  > ![](https://jums.club/images/article/微信截图_20210628170307.png)
   >
   > - `+`: Match the previous character one or more times.
   >
@@ -188,8 +190,7 @@
   > - `find -exec` or `find -ok`, execute a command after find. The  template  is `-exex {} \;`, You should know there is a space between `{}` and `\;`.
   >
   >   ```bash
-  >   $ find -type d -empty -exec touch /2.txt {} \;   // find a enpty directory, and touch a file named 2.txt
-  >   $ find -type d -empty -ok touch /2.txt {} \;   // when you use "ok" instead of "exec", it will let you confirm and execute.
+  >   $ find -type d -empty -exec touch /2.txt {} \;   // find a enpty directory, and touch a file named 2.txt$ $ find -type d -empty -ok touch /2.txt {} \;   // when you use "ok" instead of "exec", it will let you confirm and execute.
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629115716.png)
@@ -212,18 +213,13 @@
   >
   > - Mutli-condition find. `-a` refers to and, `-o` refers to or.
   >
-  >   `locate` command is faster than `find`, because `locate` is find from a database, but this database need manual to update.
+  > `locate` command is faster than `find`, because `locate` is find from a database, but this database need manual to update.
   >
-  >   ```bash
-  >   // install locate
-  >   $ sudo yum install mlocate
-  >   // update database
-  >   $ updatedb
-  >   // find a file
-  >   $ locate /etc/my
-  >   ```
+  > ```bash
+  > // install locate$ sudo yum install mlocate// update database$ updatedb// find a file$ locate /etc/my
+  > ```
   >
-  >   ![](https://jums.club/images/article/微信截图_20210629123141.png)
+  > ![](https://jums.club/images/article/微信截图_20210629123141.png)
 
 - [x] curl
 
@@ -242,8 +238,7 @@
   > - `-b`: send a cookie to server
   >
   >   ```bash
-  >   curl -b 'foo=bar;foo2=bar2;...' https://www.baidu.com  # cookie name is foo, value is bar
-  >   curl -b cookie.txt https://www.baidu.com  # send the cookie file to server 
+  >   curl -b 'foo=bar;foo2=bar2;...' https://www.baidu.com  # cookie name is foo, value is barcurl -b cookie.txt https://www.baidu.com  # send the cookie file to server 
   >   ```
   >
   > - `-c`: write the cookie information that server sent to client into a file
@@ -251,8 +246,7 @@
   > - `-d`: If you want to use **POST** request to access website, you should send data to server.
   >
   >   ```bash
-  >   curl -d 'username=admin&passwd=admin' [X POST] https://www.baidu.com
-  >   curl -d '@data.txt' https://www.baidu.com  # post data is in a file
+  >   curl -d 'username=admin&passwd=admin' [X POST] https://www.baidu.comcurl -d '@data.txt' https://www.baidu.com  # post data is in a file
   >   ```
   >
   > - `--data-urlencode`: same as `-d`, this command can change the data to urlcode.
@@ -304,16 +298,13 @@
   >   enable this config, `record_host_keys=Flase`. And add the host's ip address in the file(`/etc/ansible/hosts`).
   >
   >   ```bash
-  >   $ ssh-keygen
-  >   $ ssh-copy-id [ip_address]
-  >   $ ansible -m ping
+  >   $ ssh-keygen$ ssh-copy-id [ip_address]$ ansible -m ping
   >   ```
   >
   > - `ansible-playbook`: execute a script.
   >
   >   ```bash
-  >   $ ansible-playbook hello.yml
-  >   $ cat hello.yml
+  >   $ ansible-playbook hello.yml$ cat hello.yml
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629153439.png)
@@ -323,8 +314,7 @@
   > - `ansible-vault`: encrypt or decrypt a file, to ensure the secrity of the file.
   >
   >   ```bash
-  >   $ ansible-vault encrypt hello.yml
-  >   $ ansible-vault decrypt hello.yml
+  >   $ ansible-vault encrypt hello.yml$ ansible-vault decrypt hello.yml
   >   ```
   >
   > - `ansible-console`: A interact command line of ansible.
@@ -340,8 +330,7 @@
   >   - raw: execute the low level command
   >
   >   ```bash
-  >   $ ansible [host group] -m [module name] -a "[command line]"
-  >   $ ansible webserver -m command/shell -a "ls /etc"
+  >   $ ansible [host group] -m [module name] -a "[command line]"$ ansible webserver -m command/shell -a "ls /etc"
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629162327.png)
@@ -353,8 +342,7 @@
   >   change config file(/etc/ansible/ansible.cfg), enable the line and change it.
   >
   >   ```bash
-  >   module_name = command  // change it to shell
-  >   module_name = shell
+  >   module_name = command  // change it to shellmodule_name = shell
   >   ```
   >
   > - `script`: Run a script on the remote hosts
@@ -366,8 +354,7 @@
   > - `copy`: Copy files from current host to remote hosts.
   >
   >   ```bash
-  >   $ ansible [host group] -m copy -a "src=/etc/systemfig dest=data/os.txt" owner=[user name] mode=600
-  >   $ ansible webserver -m copy -a "src=/home/centos/pig/1.txt dest=/home/root123/2.txt owner=root123 mode=600"
+  >   $ ansible [host group] -m copy -a "src=/etc/systemfig dest=data/os.txt" owner=[user name] mode=600$ ansible webserver -m copy -a "src=/home/centos/pig/1.txt dest=/home/root123/2.txt owner=root123 mode=600"
   >   ```
   >
   >   ![](https://jums.club/images/article/微信截图_20210629164240.png)
@@ -503,8 +490,7 @@
   > - set the header like this: 
   >
   >   ```bash
-  >   Access-Control-Allow-Origin: *  # if a request can be made from any origin
-  >   Access-Control-Allow-Origin: https://example.com # the origin that is allowed to make the request
+  >   Access-Control-Allow-Origin: *  # if a request can be made from any originAccess-Control-Allow-Origin: https://example.com # the origin that is allowed to make the request
   >   ```
   >
   > **Two type of CORS Request**
@@ -516,11 +502,7 @@
   >   A preflight request example:
   >
   >   ```bash
-  >   # Request
-  >   curl -i -X OPTIONS localhost:3001/api/ping \
-  >   -H 'Access-Control-Request-Method: GET' \
-  >   -H 'Access-Control-Request-Headers: Content-Type, Accept' \
-  >   -H 'Origin: http://localhost:3000'
+  >   # Requestcurl -i -X OPTIONS localhost:3001/api/ping \-H 'Access-Control-Request-Method: GET' \-H 'Access-Control-Request-Headers: Content-Type, Accept' \-H 'Origin: http://localhost:3000'
   >   ```
   >
   > 
@@ -553,6 +535,52 @@
 # Redis
 
 - [ ] hash,zset,set,string 等数据类型的常用指令和时间复杂度
+
+  > [A tutorials of my blog](https://jums.club/install-and-run-redis-on-docker/)
+  >
+  > Start docker service on Linux:
+  >
+  > ```bash
+  > $ sudo systemctl start docker   //start the service
+  > $ systemctl status docker       //view the status of docker
+  > ```
+  >
+  > After that, you should run redis on docker:
+  >
+  > ```bash
+  > $ docker run -it redis bash
+  > $ docker ps -a  //list all containers
+  > ```
+  >
+  > [Install redis on Linux](https://www.linode.com/docs/guides/install-and-configure-redis-on-centos-7/):
+  >
+  > ```bash
+  > $ sudo yum update
+  > $ sudo yum install epel-release
+  > $ sudo yum install redis
+  > //start redis on linux
+  > $ systemctl start redis
+  > //To automatically start redis on boot
+  > $ systemctl enable redis
+  > //verify the installtion
+  > $ redis-cli ping  
+  > PONG   //If you get this, it means successful.
+  > ```
+
+  > connect remote redis server
+  >
+  > **Could not connect to Redis at 192.168.1.11:6379: No route to host**
+  >
+  > ```bash
+  > iptables -N REDIS
+  > iptables -A REDIS -s 192.168.10.1 -j ACCEPT
+  > iptables -A REDIS -s 192.168.10.2 -j ACCEPT
+  > iptables -A REDIS -j LOG --log-prefix "unauth-redis-access"
+  > iptables -A REDIS -j REJECT --reject-with icmp-port-unreachable
+  > iptables -I INPUT -p tcp --dport 6379 -j REDIS
+  > ```
+  >
+  > 
 
   > - [x] **string**: 
   >
@@ -592,6 +620,95 @@
   > | 18   | [DECR key](https://www.runoob.com/redis/strings-decr.html) 将 key 中储存的数字值减一。 |                                   |
   > | 19   | [DECRBY key decrement](https://www.runoob.com/redis/strings-decrby.html) key 所储存的值减去给定的减量值（decrement） 。 |                                   |
   > | 20   | [APPEND key value](https://www.runoob.com/redis/strings-append.html) 如果 key 已经存在并且是一个字符串， APPEND 命令将指定的 value 追加到该 key 原来值（value）的末尾。 |                                   |
+  >
+  > - [x] hash
+  >
+  > ``` bash
+  > > hmset key filed value [filed value ...]
+  > # for example
+  > > hmset hash1 a "123" b "567"
+  > OK
+  > > hget hash1 a
+  > "123"
+  > 
+  > ```
+  >
+  > | 序号 | 命令及描述                                                   |
+  > | :--- | :----------------------------------------------------------- |
+  > | 1    | [HDEL key field1 [field2\]](https://www.runoob.com/redis/hashes-hdel.html) 删除一个或多个哈希表字段 |
+  > | 2    | [HEXISTS key field](https://www.runoob.com/redis/hashes-hexists.html) 查看哈希表 key 中，指定的字段是否存在。 |
+  > | 3    | [HGET key field](https://www.runoob.com/redis/hashes-hget.html) 获取存储在哈希表中指定字段的值。 |
+  > | 4    | [HGETALL key](https://www.runoob.com/redis/hashes-hgetall.html) 获取在哈希表中指定 key 的所有字段和值 |
+  > | 5    | [HINCRBY key field increment](https://www.runoob.com/redis/hashes-hincrby.html) 为哈希表 key 中的指定字段的整数值加上增量 increment 。 |
+  > | 6    | [HINCRBYFLOAT key field increment](https://www.runoob.com/redis/hashes-hincrbyfloat.html) 为哈希表 key 中的指定字段的浮点数值加上增量 increment 。 |
+  > | 7    | [HKEYS key](https://www.runoob.com/redis/hashes-hkeys.html) 获取所有哈希表中的字段 |
+  > | 8    | [HLEN key](https://www.runoob.com/redis/hashes-hlen.html) 获取哈希表中字段的数量 |
+  > | 9    | [HMGET key field1 [field2\]](https://www.runoob.com/redis/hashes-hmget.html) 获取所有给定字段的值 |
+  > | 10   | [HMSET key field1 value1 [field2 value2 \]](https://www.runoob.com/redis/hashes-hmset.html) 同时将多个 field-value (域-值)对设置到哈希表 key 中。 |
+  > | 11   | [HSET key field value](https://www.runoob.com/redis/hashes-hset.html) 将哈希表 key 中的字段 field 的值设为 value 。 |
+  > | 12   | [HSETNX key field value](https://www.runoob.com/redis/hashes-hsetnx.html) 只有在字段 field 不存在时，设置哈希表字段的值。 |
+  > | 13   | [HVALS key](https://www.runoob.com/redis/hashes-hvals.html) 获取哈希表中所有值。 |
+  > | 14   | [HSCAN key cursor [MATCH pattern\] [COUNT count]](https://www.runoob.com/redis/hashes-hscan.html) 迭代哈希表中的键值对。 |
+  >
+  > - [x] set
+  >
+  > ```bash
+  > > sadd key value [key value ...]
+  > // for example
+  > > sadd jj zhangsan
+  > (integer) 1
+  > > sadd jj lisi
+  > (integer) 1
+  > > smembers
+  > 1) "lisi"
+  > 2) "zhangsan"
+  > ```
+  >
+  > | 序号 | 命令及描述                                                   |
+  > | :--- | :----------------------------------------------------------- |
+  > | 1    | [SADD key member1 [member2\]](https://www.runoob.com/redis/sets-sadd.html) 向集合添加一个或多个成员 |
+  > | 2    | [SCARD key](https://www.runoob.com/redis/sets-scard.html) 获取集合的成员数 |
+  > | 3    | [SDIFF key1 [key2\]](https://www.runoob.com/redis/sets-sdiff.html) 返回第一个集合与其他集合之间的差异。 |
+  > | 4    | [SDIFFSTORE destination key1 [key2\]](https://www.runoob.com/redis/sets-sdiffstore.html) 返回给定所有集合的差集并存储在 destination 中 |
+  > | 5    | [SINTER key1 [key2\]](https://www.runoob.com/redis/sets-sinter.html) 返回给定所有集合的交集 |
+  > | 6    | [SINTERSTORE destination key1 [key2\]](https://www.runoob.com/redis/sets-sinterstore.html) 返回给定所有集合的交集并存储在 destination 中 |
+  > | 7    | [SISMEMBER key member](https://www.runoob.com/redis/sets-sismember.html) 判断 member 元素是否是集合 key 的成员 |
+  > | 8    | [SMEMBERS key](https://www.runoob.com/redis/sets-smembers.html) 返回集合中的所有成员 |
+  > | 9    | [SMOVE source destination member](https://www.runoob.com/redis/sets-smove.html) 将 member 元素从 source 集合移动到 destination 集合 |
+  > | 10   | [SPOP key](https://www.runoob.com/redis/sets-spop.html) 移除并返回集合中的一个随机元素 |
+  > | 11   | [SRANDMEMBER key [count\]](https://www.runoob.com/redis/sets-srandmember.html) 返回集合中一个或多个随机数 |
+  > | 12   | [SREM key member1 [member2\]](https://www.runoob.com/redis/sets-srem.html) 移除集合中一个或多个成员 |
+  > | 13   | [SUNION key1 [key2\]](https://www.runoob.com/redis/sets-sunion.html) 返回所有给定集合的并集 |
+  > | 14   | [SUNIONSTORE destination key1 [key2\]](https://www.runoob.com/redis/sets-sunionstore.html) 所有给定集合的并集存储在 destination 集合中 |
+  > | 15   | [SSCAN key cursor [MATCH pattern\] [COUNT count]](https://www.runoob.com/redis/sets-sscan.html) 迭代集合中的元素 |
+  >
+  > - [x] list
+  >
+  > ```bash
+  > > lpush key value [value ...]
+  > ```
+  >
+  > 
+  >
+  > | 序号 | 命令及描述                                                   |
+  > | :--- | :----------------------------------------------------------- |
+  > | 1    | [BLPOP key1 [key2 \] timeout](https://www.runoob.com/redis/lists-blpop.html) 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。 |
+  > | 2    | [BRPOP key1 [key2 \] timeout](https://www.runoob.com/redis/lists-brpop.html) 移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。 |
+  > | 3    | [BRPOPLPUSH source destination timeout](https://www.runoob.com/redis/lists-brpoplpush.html) 从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。 |
+  > | 4    | [LINDEX key index](https://www.runoob.com/redis/lists-lindex.html) 通过索引获取列表中的元素 |
+  > | 5    | [LINSERT key BEFORE\|AFTER pivot value](https://www.runoob.com/redis/lists-linsert.html) 在列表的元素前或者后插入元素 |
+  > | 6    | [LLEN key](https://www.runoob.com/redis/lists-llen.html) 获取列表长度 |
+  > | 7    | [LPOP key](https://www.runoob.com/redis/lists-lpop.html) 移出并获取列表的第一个元素 |
+  > | 8    | [LPUSH key value1 [value2\]](https://www.runoob.com/redis/lists-lpush.html) 将一个或多个值插入到列表头部 |
+  > | 9    | [LPUSHX key value](https://www.runoob.com/redis/lists-lpushx.html) 将一个值插入到已存在的列表头部 |
+  > | 10   | [LRANGE key start stop](https://www.runoob.com/redis/lists-lrange.html) 获取列表指定范围内的元素 |
+  > | 11   | [LREM key count value](https://www.runoob.com/redis/lists-lrem.html) 移除列表元素 |
+  > | 12   | [LSET key index value](https://www.runoob.com/redis/lists-lset.html) 通过索引设置列表元素的值 |
+  > | 13   | [LTRIM key start stop](https://www.runoob.com/redis/lists-ltrim.html) 对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。 |
+  > | 14   | [RPOP key](https://www.runoob.com/redis/lists-rpop.html) 移除列表的最后一个元素，返回值为移除的元素。 |
+  > | 15   | [RPOPLPUSH source destination](https://www.runoob.com/redis/lists-rpoplpush.html) 移除列表的最后一个元素，并将该元素添加到另一个列表并返回 |
+  > | 16   | [RPUSH key value1 [value2\]](https://www.runoob.com/redis/lists-rpush.html) 在列表中添加一个或多个值 |
+  > | 17   | [RPUSHX key value](https://www.runoob.com/redis/lists-rpushx.html) 为已存在的列表添加值 |
 
 - [ ] 掌握正确的redis分布式锁。
 
@@ -640,8 +757,7 @@
     > After that, you also should `add` the files to repository, use the following command:
     >
     > ```bash
-    > $ git add [file name]
-    > $ git commit -m ""  # you can't add the [file name] here, or you will get a error
+    > $ git add [file name]$ git commit -m ""  # you can't add the [file name] here, or you will get a error
     > ```
 
   - [x] rebase
@@ -657,24 +773,7 @@
     > `git log`信息如下：
     >
     > ```bash
-    > $ git log
-    > commit 466755c74ed4fd27059f6b0e4f42d0c3dcb8b663 (HEAD -> master, origin/master)
-    > Author: crazyjums <crazyjums@gmail.com>
-    > Date:   Mon Jun 21 14:58:11 2021 +0800
-    > 
-    > add a second title
-    > 
-    > commit b57119f13a741f116daabfebd27b51a990b7322a
-    > Author: crazyjums <crazyjums@gmail.com>
-    > Date:   Mon Jun 21 14:39:35 2021 +0800
-    > 
-    > modified the file, add a new line
-    > 
-    > commit 1f7990b84caf752f9e22d1dbcf215d5285066d25
-    > Author: crazyjums <crazyjums@gmail.com>
-    > Date:   Mon Jun 21 14:27:27 2021 +0800
-    > 
-    > first time to commit
+    > $ git logcommit 466755c74ed4fd27059f6b0e4f42d0c3dcb8b663 (HEAD -> master, origin/master)Author: crazyjums <crazyjums@gmail.com>Date:   Mon Jun 21 14:58:11 2021 +0800add a second titlecommit b57119f13a741f116daabfebd27b51a990b7322aAuthor: crazyjums <crazyjums@gmail.com>Date:   Mon Jun 21 14:39:35 2021 +0800modified the file, add a new linecommit 1f7990b84caf752f9e22d1dbcf215d5285066d25Author: crazyjums <crazyjums@gmail.com>Date:   Mon Jun 21 14:27:27 2021 +0800first time to commit
     > ```
     >
     > `HEAD`表示当前的版本号，如果需要回退到上一个版本号，则可以使用`HEAD^`、上上一个版本号则是`HEAD^^`、往上倒100个可以在`HEAD`后面写上100个`^`符号，当然也可以写成`HEAD~100`。
@@ -686,25 +785,13 @@
     > 除了使用`HEAD`之外，还可以使用`commit id`进行回退，每一次版本提交都有一个宇宙唯一的`commit id`，指定该`commit id`的前几位就行，`git`会自行查找。
     >
     > ```bash
-    > $ git reset --hard HEAD~2
-    > HEAD is now at 1f7990b first time to commit
-    > 
-    > $ git reset --hard 466755
-    > HEAD is now at 466755c add a second title
+    > $ git reset --hard HEAD~2HEAD is now at 1f7990b first time to commit$ git reset --hard 466755HEAD is now at 466755c add a second title
     > ```
     >
     > 在使用`git log`命令时，只会显示当前命令窗口的历史提交记录，如果电脑重启之后，在使用`git log`命令出现的历史记录会是空，但是在`git`中，就算是重启电脑之后，还是有办法找到每一次的历史提交记录，可以使用命令：`git reflog`：
     >
     > ```bash
-    > $ git reflog
-    > 1f7990b (HEAD -> master) HEAD@{0}: reset: moving to HEAD~2
-    > 466755c (origin/master) HEAD@{1}: reset: moving to 466755
-    > 1f7990b (HEAD -> master) HEAD@{2}: reset: moving to HEAD~2
-    > 466755c (origin/master) HEAD@{3}: reset: moving to 466755
-    > b57119f HEAD@{4}: reset: moving to HEAD^
-    > 466755c (origin/master) HEAD@{5}: commit: add a second title
-    > b57119f HEAD@{6}: commit: modified the file, add a new line
-    > 1f7990b (HEAD -> master) HEAD@{7}: commit (initial): first time to commit
+    > $ git reflog1f7990b (HEAD -> master) HEAD@{0}: reset: moving to HEAD~2466755c (origin/master) HEAD@{1}: reset: moving to 4667551f7990b (HEAD -> master) HEAD@{2}: reset: moving to HEAD~2466755c (origin/master) HEAD@{3}: reset: moving to 466755b57119f HEAD@{4}: reset: moving to HEAD^466755c (origin/master) HEAD@{5}: commit: add a second titleb57119f HEAD@{6}: commit: modified the file, add a new line1f7990b (HEAD -> master) HEAD@{7}: commit (initial): first time to commit
     > ```
     >
     > 在使用`reset`等命令修改了本地文件之后，也就是当前本地电脑上的文件不是`git`托管平台的最新版本的时候，需要使用`git pull`命令将`git`平台的命令拉过来。
@@ -714,12 +801,7 @@
     > ```
     >
     > ```bash
-    > $ git pull git@github.com:crazyjums/learngit.git master
-    > From github.com:crazyjums/learngit
-    >  * branch            master     -> FETCH_HEAD
-    > Auto-merging readme.md
-    > CONFLICT (content): Merge conflict in readme.md
-    > Automatic merge failed; fix conflicts and then commit the result.
+    > $ git pull git@github.com:crazyjums/learngit.git masterFrom github.com:crazyjums/learngit * branch            master     -> FETCH_HEADAuto-merging readme.mdCONFLICT (content): Merge conflict in readme.mdAutomatic merge failed; fix conflicts and then commit the result.
     > ```
 
   - [x] revert 
@@ -731,16 +813,7 @@
     > This command's usage just like the `git reset`.
     >
     > ```bash
-    > $ git revert HEAD^  # go back to last version
-    > $ git revert HEAD~[number]  # go back to previous version
-    > # you can see the trackability information at `git revert`:
-    > commit d567e6e3e14165ffa8febd4c62bac2fa413a1509
-    > Author: crazyjums <crazyjums@gmail.com>
-    > Date:   Thu Jun 24 11:33:43 2021 +0800
-    > 
-    >  Revert "add a txt file by jums"
-    > 
-    >  This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
+    > $ git revert HEAD^  # go back to last version$ git revert HEAD~[number]  # go back to previous version# you can see the trackability information at `git revert`:commit d567e6e3e14165ffa8febd4c62bac2fa413a1509Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 11:33:43 2021 +0800 Revert "add a txt file by jums" This reverts commit db298e7bb373711438efdab0e64bbab72b5b5cac.
     > ```
 
   - [x] checkout 
@@ -752,11 +825,7 @@
     > ```
     >
     > ```bash
-    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)
-    > $ git checkout new_branch
-    > Switched to branch 'new_branch'
-    > 
-    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (new_branch)
+    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)$ git checkout new_branchSwitched to branch 'new_branch'ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (new_branch)
     > ```
 
   - [x] stash 
@@ -770,13 +839,7 @@
     > - 经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是`git stash`命令。储藏(stash)可以获取你工作目录的中间状态——也就是你修改过的被追踪的文件和暂存的变更——并将它保存到一个未完结变更的堆栈中，随时可以重新应用。
     >
     > ```bash
-    > $ git stash list  # display all stash version
-    > $ git stash pop   # get the top of the stash stack version
-    > $ git stask apply [version number]# when there is a lot of stash versions, you can use this command to specify the version number
-    > $ git stash   # save current working area to the stash version
-    > $ git stash save [a stash name]  # the same as the "git stash", but this version will get a nick name you named it.
-    > $ git stash drop  # delete the top of stash stack's version
-    > $ git stash show [version number]   # use this command to view specific information of the working area
+    > $ git stash list  # display all stash version$ git stash pop   # get the top of the stash stack version$ git stask apply [version number]# when there is a lot of stash versions, you can use this command to specify the version number$ git stash   # save current working area to the stash version$ git stash save [a stash name]  # the same as the "git stash", but this version will get a nick name you named it.$ git stash drop  # delete the top of stash stack's version$ git stash show [version number]   # use this command to view specific information of the working area
     > ```
 
   - [x] cherry-pick
@@ -790,24 +853,7 @@
     > [git cherry-pick tutorials](http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)  (more commands informations here)
     >
     > ```bash
-    > # at master branch
-    > $ git add 1.txt && git commit -m "add a txt file"
-    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)
-    > $ git log
-    > commit db298e7bb373711438efdab0e64bbab72b5b5cac (HEAD -> master)
-    > Author: crazyjums <crazyjums@gmail.com>
-    > Date:   Thu Jun 24 10:28:47 2021 +0800
-    > 
-    >  add a txt file
-    > $ git checkout topic
-    > $ git cherry-pick db298e7
-    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
-    > $ git log
-    > commit ed9bd8a0e76044141efdf26547092eae24e38400 (HEAD -> topic)
-    > Author: crazyjums <crazyjums@gmail.com>
-    > Date:   Thu Jun 24 10:28:47 2021 +0800
-    > 
-    >  add a txt file
+    > # at master branch$ git add 1.txt && git commit -m "add a txt file"ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (master)$ git logcommit db298e7bb373711438efdab0e64bbab72b5b5cac (HEAD -> master)Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 10:28:47 2021 +0800 add a txt file$ git checkout topic$ git cherry-pick db298e7ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)$ git logcommit ed9bd8a0e76044141efdf26547092eae24e38400 (HEAD -> topic)Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 10:28:47 2021 +0800 add a txt file
     > ```
     >
     > **if use the options [-n], it's no commits in current branch.**
@@ -819,16 +865,7 @@
     > **if use the options [-x], you can track the commits**
     >
     > ```bash
-    > $ git cherry-pick -x [commit-id]
-    > ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)
-    > $ git log
-    > commit 6ba043389d5940b743ab39e37419ebc82685b0af (HEAD -> topic)
-    > Author: crazyjums <crazyjums@gmail.com>
-    > Date:   Thu Jun 24 10:41:48 2021 +0800
-    > 
-    >  add 2.txt
-    > 
-    >  (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
+    > $ git cherry-pick -x [commit-id]ASUS@ZHG_ASUS MINGW64 ~/OneDrive/learngit (topic)$ git logcommit 6ba043389d5940b743ab39e37419ebc82685b0af (HEAD -> topic)Author: crazyjums <crazyjums@gmail.com>Date:   Thu Jun 24 10:41:48 2021 +0800 add 2.txt (cherry picked from commit 771858e928c708923e843ffe4c29843f2900125a)  # this line will display the trackability information
     > ```
     >
     > **if use the options [-e] or [--edit], you can edit the file before you commit**
@@ -842,20 +879,13 @@
     > branche是git tree中的分支，其中主分支是master
     >
     > ```bash
-    > $ git branch <branch name> # create a new branch 
-    > $ git push origin <branch name> # push the new branch to remote repository
-    > $ git branch -d <branch name> # delete the local branch
-    > $ git push origin :<branch name> # delete the remote repository branch
-    > $ git chechout <branch name> # swtich to <branch name> branch
-    > $ git branch -a # show all branch of your repository
+    > $ git branch <branch name> # create a new branch $ git push origin <branch name> # push the new branch to remote repository$ git branch -d <branch name> # delete the local branch$ git push origin :<branch name> # delete the remote repository branch$ git chechout <branch name> # swtich to <branch name> branch$ git branch -a # show all branch of your repository
     > ```
 
   - [x] delete file from remote repository
 
     > ```bash
-    > $ git rm <file name> or <dic name>
-    > $ git commit -m ""
-    > $ git push origin <branch name>
+    > $ git rm <file name> or <dic name>$ git commit -m ""$ git push origin <branch name>
     > ```
 
 - [x] ssh 秘钥登陆原理
