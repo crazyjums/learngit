@@ -137,7 +137,7 @@
   >
   > - `?`: Match the previous character zero or one time.
   >
-  > ![](https://jums.club/images/article/微信截图_20210628170307.png)
+  >   ![](https://jums.club/images/article/微信截图_20210628170307.png)
   >
   > - `+`: Match the previous character one or more times.
   >
@@ -213,13 +213,13 @@
   >
   > - Mutli-condition find. `-a` refers to and, `-o` refers to or.
   >
-  > `locate` command is faster than `find`, because `locate` is find from a database, but this database need manual to update.
+  >   `locate` command is faster than `find`, because `locate` is find from a database, but this database need manual to update.
   >
-  > ```bash
-  > // install locate$ sudo yum install mlocate// update database$ updatedb// find a file$ locate /etc/my
-  > ```
+  >   ```bash
+  >   // install locate$ sudo yum install mlocate// update database$ updatedb// find a file$ locate /etc/my
+  >   ```
   >
-  > ![](https://jums.club/images/article/微信截图_20210629123141.png)
+  >   ![](https://jums.club/images/article/微信截图_20210629123141.png)
 
 - [x] curl
 
