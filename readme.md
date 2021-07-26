@@ -533,7 +533,7 @@
   - 对称加密的加密和解密的速度快，效率高；非对称加密算法的加密和解密的速度满，效率低
   - 对称加密算法的加密和解密都是用的同一个密钥，密钥的传输成本较高；非对称加密算法的加密和解密采用的是不同的密钥，一个公钥一个私钥，公钥可以对外公开，密钥传输的成本较低。
 
-  ![https://segmentfault.com/img/bVbClUj](https://segmentfault.com/img/bVbClUj)
+  ![https://segmentfault.com/img/bVbClUj](https://jums.club/images/article2/bVbClUj.png)
 
   > **Hypertext Transfer Protocol Secure** (**HTTPS**) is an extension of the [Hypertext Transfer Protocol](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) (HTTP). It is used for [secure communication](https://en.wikipedia.org/wiki/Secure_communications) over a [computer network](https://en.wikipedia.org/wiki/Network_operating_system), and is widely used on the Internet.[[1\]](https://en.wikipedia.org/wiki/HTTPS#cite_note-1)[[2\]](https://en.wikipedia.org/wiki/HTTPS#cite_note-2) In HTTPS, the [communication protocol](https://en.wikipedia.org/wiki/Communication_protocol) is encrypted using [Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security) (TLS) or, formerly, Secure Sockets Layer (SSL). The protocol is therefore also referred to as **HTTP over TLS**,[[3\]](https://en.wikipedia.org/wiki/HTTPS#cite_note-3) or **HTTP over SSL**.
   >
@@ -541,7 +541,7 @@
 
   `HTTPS=HTTP+TLS/SSL`
 
-  ![](https://segmentfault.com/img/bVbClUl)
+  ![](https://jums.club/images/article2/bVbClUl.png)
 
   数字正式在HTTPS中相当于非对称加密算法的私钥和公钥的分配这么一个工作。
 
